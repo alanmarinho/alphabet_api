@@ -18,6 +18,7 @@ const port = process.env.PORT || 3000;
 app.use(cookieParser());
 app.use(express.json());
 app.use(helmet());
+app.set('trust proxy', 1);
 app.use(
   cors({
     origin: 'https://games.alanmarinho.com.br',
