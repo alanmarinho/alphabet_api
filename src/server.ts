@@ -18,6 +18,7 @@ const port = process.env.PORT || 3000;
 app.use(cookieParser());
 app.use(express.json());
 app.use(helmet());
+app.set('trust proxy', 1);
 const BASE_URL = process.env.FRONT_BASE_URL;
 app.use(
   cors({
