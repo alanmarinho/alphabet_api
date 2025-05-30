@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://games.alanmarinho.com.br',
     credentials: true,
   }),
 );
