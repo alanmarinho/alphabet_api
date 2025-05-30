@@ -18,13 +18,15 @@ const port = process.env.PORT || 3000;
 app.use(cookieParser());
 app.use(express.json());
 app.use(helmet());
+const BASE_URL = process.env.FRONT_BASE_URL;
 app.use(
   cors({
-    origin: 'https://games.alanmarinho.com.br',
+    origin: BASE_URL,
     credentials: true,
   }),
 );
 app.use(express.json());
+app.set('trust proxy', 1);
 app.use(
   rateLimit({
     windowMs: 15 * 60 * 1000,
@@ -40,7 +42,7 @@ app.use('/', (req: Request, res: Response) => {
     msg: 'Hello from Alphabet API!',
     res: res,
     status: 200,
-    data: { time: new Date(), front: 'https://games.alanmarinho.com.br' },
+    data: { time: new Date(), front: BASE_URL },
   });
 });
 

@@ -9,6 +9,7 @@ const controller = new AuthController();
 router.post('/login', controller.login);
 router.post('/register', controller.register);
 router.post('/logout', auth.tokenVerify, controller.logout);
+router.post('/deleteaccount', auth.tokenVerify, controller.deleteAccount);
 
 router.post('/startrecoverpassword', controller.startRecoverPassword);
 router.post('/recoverpassword', controller.recoverPassword);

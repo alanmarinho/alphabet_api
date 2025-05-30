@@ -30,6 +30,7 @@ enum EEmailStatus {
   verificationPending = 'validationPending',
   verified = 'verified',
 }
+const isProduction = process.env.NODE_ENV === 'production';
 
 export default class AuthController {
   private async newRecoverPasswordToken(id: String): Promise<string> {
@@ -130,8 +131,8 @@ export default class AuthController {
 
       res.cookie('token', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'none',
+        secure: isProduction,
+        sameSite: isProduction ? 'none' : 'lax',
         maxAge: 1000 * 60 * 60,
       });
 
@@ -221,8 +222,8 @@ export default class AuthController {
     }
     res.clearCookie('token', {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'none',
+      secure: isProduction,
+      sameSite: isProduction ? 'none' : 'lax',
     });
 
     return SuccessReturn({
@@ -275,7 +276,12 @@ export default class AuthController {
       }
 
       if (!(await verifyPassword(result.data.password, user.password))) {
-        return ErrorReturn({ msg: 'Invalid password', res: res, status: 401 });
+        return ErrorReturn({
+          msg: 'Invalid password',
+          fields: [{ field: 'password', message: 'Incorrect password' }],
+          res: res,
+          status: 401,
+        });
       }
 
       await pool.query('DELETE FROM users WHERE id = $1', [req.user?.userID]);
