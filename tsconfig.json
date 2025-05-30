@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src",
+    "typeRoots": [
+      "./types",
+      "./node_modules/@types"
+    ],
+    "paths": {
+      "#controller/*": [
+        "controllers/*"
+      ],
+      "#routes/*": [
+        "routes/*"
+      ],
+      "#schemas/*": [
+        "schemas/*"
+      ],
+      "#config/*": [
+        "config/*"
+      ],
+      "#services/*": [
+        "services/*"
+      ],
+      "#utils/*": [
+        "utils/*"
+      ],
+      "#middlewares/*": [
+        "middlewares/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "migrations"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

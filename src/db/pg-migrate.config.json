@@ -1,0 +1,5 @@
+{
+  "databaseUrl": "sua-connection-string-aqui",
+  "migrations-dir": "./migrations",
+  "direction": "up"
+}
