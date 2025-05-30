@@ -1,8 +1,8 @@
 ## Alphabet API
 
 ## Projeto completo rodando em produção: 
-  - Api: 
-  - Frontend: 
+  - Api: https://alphabet-api.onrender.com
+  - Frontend: https://games.alanmarinho.com.br/
 
 ### Overview
 
