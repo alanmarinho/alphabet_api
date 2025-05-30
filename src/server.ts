@@ -9,6 +9,7 @@ import gameRoutes from '#routes/gameRoutes';
 import authRoutes from '#routes/authRoutes';
 import logger from '#utils/logger';
 import cookieParser from 'cookie-parser';
+import { SuccessReturn } from '#utils/successReturn';
 dotenv.config();
 
 const app = express();
@@ -34,6 +35,14 @@ app.use(
 
 app.use('/game', gameRoutes);
 app.use('/auth', authRoutes);
+app.use('/', (req: Request, res: Response) => {
+  return SuccessReturn({
+    msg: 'Hello from Alphabet API!',
+    res: res,
+    status: 200,
+    data: { time: new Date(), front: 'https://games.alanmarinho.com.br' },
+  });
+});
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   logger.error(err.stack);
